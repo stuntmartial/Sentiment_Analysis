@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <!-- build:css css/main.css -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='node_modules/bootstrap/dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='node_modules/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='node_modules/bootstrap-social/bootstrap-social.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css1/css/styles.css')}}">
+    <!-- endbuild -->
+
+    <title>Analysis</title>
+
+<style>
+body {
+  background: #ADB6FF; 
+  height:150px;
+}
+.form {
+	margin: 0px auto;
+	width: 210px;
+	text-align: center;
+}
+
+input#search{
+  background-image:url('static/img/icon.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-indent:20px;
+}
+input#search:focus{
+  background-image: none;
+  text-indent: 0px;
+}
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 30px;
+  width:50%;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #2E8BC0;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 9px #0C2D48;
+}
+}
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-dark navbar-expand-sm fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>                
+            </button>
+            <a class="navbar-brand mr-auto btn btn-social-icon btn-twitter" href="#"><span class ="fa fa-twitter fa-lg"></span></a>
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{url_for('hello')}}"><i class="fa fa-home fa-lg"></i> Home</a></li>
+                     <li class="nav-item active"><a class="nav-link" href="#"><i class="fa fa-info fa-lg"></i> Analysis</a></li>
+                      <li class="nav-item "><a class="nav-link" href="{{url_for('hello1')}}"><i class="fa fa-list fa-lg"></i> About Us</a></li>
+                </ul>                
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+	    <div class="col-6">
+	     <a class="nav-link" href="{{url_for('hello')}}"><i class="fa fa-arrow-circle-left" style="font-size:48px;color:black"></i></a>
+	    </div>
+	    <div class="col-6">
+	     <a class="nav-link" href="{{url_for('hello1')}}"><i class="fa fa-arrow-circle-right float-right" style="font-size:48px;color:black"></i></a>
+    	</div>
+    </div>
+     
+    <div class="container">
+      <div class="row row-content">
+        <div class="col-6 col-md-9">
+            <form action="{{url_for('result')}}" method = "post">  
+                <div class="form-group row">        
+                  <label for="tweet" class="col-form-label" style="font-size: 50px;">Tweet</label> 
+                    <div class="col-12">       
+                      <input type="text" name = "tweet" placeholder= "tweet" required="required" id="search" class="form-control" height="200" width="700" onchange="hideIcon(this);" autocomplete="off" style="border: 2px solid black;">
+                    </div>
+                </div>  
+                  <div class="form-group row">
+                      <div class="col-12">  
+                        <button class="button">Enter</button>
+                      </div>
+                      <br>
+                      {{text}}
+                  </div>
+              </form>
+          </div>
+          <div class="col-md-3">
+            <a data-toggle="tooltip" data-placement="auto" title = "Hi there ! I am bot , I will do sentiment analysis for you !!"><img src="{{url_for('static',filename='img/chatbots.jpg')}}" align="left" height="150" width="300"></a>
+          </div>
+      </div>   
+    </div>	
+
+    <footer class = "footer">
+            <div class = "container">
+                <div class = "row">             
+                    <div class = "col-4 offset-1">
+                      <h5>Links</h5>
+                        <ul class = "list-unstyled">
+                            <li><a href="{{url_for('hello')}}">Home</a></li>
+                            <li><a href="#">Analysis</a></li>
+                            <li><a href="{{url_for('hello1')}}">About Us</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class = "col-7 align-self-center">
+                        <div class="text-center">
+                            <a class="btn btn-social-icon btn-google" href="{{ url_for('static',filename='http://google.com/+')}}"><i class = "fa fa-google-plus fa-lg"></i></a>
+                            <a class="btn btn-social-icon btn-facebook" href="{{ url_for('static',filename='http://www.facebook.com/profile.php?id=')}}"><i class = "fa fa-facebook fa-lg"></i></a>
+                            <a class="btn btn-social-icon btn-linkedin" href="{{ url_for('static',filename='http://www.linkedin.com/in/')}}"><i class = "fa fa-linkedin fa-lg"></i></a>
+                            <a class="btn btn-social-icon btn-twitter" href="{{ url_for('static',filename='http://twitter.com/')}}"><i class = "fa fa-twitter fa-lg"></i></a>
+                            <a class="btn btn-social-icon btn-youtube" href="{{ url_for('static',filename='http://youtube.com/')}}"><i class = "fa fa-youtube fa-lg"></i></a>
+                            <a class="btn btn-social-icon " href="{{ url_for('static',filename='mailto:')}}"><i class = "fa fa-envelope fa-lg"></i></a>
+                        </div>
+                    </div>
+               </div>
+               <div class = "row justify-content-center">             
+                    <div class = "col-auto">
+                        <p>© Copyright 2020</p>
+                    </div>
+               </div>
+            </div>
+        </footer>
+      <audio autoplay><source src="{{ url_for('static',filename='sound/sound/something.aac')}}" type="audio/aac"></audio>
+          <script src="{{ url_for('static',filename='node_modules/jquery/dist/jquery.slim.min.js')}}"></script>
+        <script src="{{ url_for('static',filename='node_modules/popper.js/dist/umd/popper.min.js')}}"></script>
+        <script src="{{ url_for('static',filename='node_modules/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+        <script src="{{ url_for('static',filename='js/scripts.js')}}"></script>
+                <script>
+                   $(window).on("load", function(){
+                    $('[data-toggle="tooltip"]').tooltip().mouseover();
+                    setTimeout(function(){ $('[data-toggle="tooltip"]').tooltip('hide'); }, 2000);
+                });  
+                </script> 
+                <script>
+                  function hideIcon(self){
+                    self.style.backgroundImage = 'none';
+                  }
+                </script>
+</body>
+</html>
+ 
+ 
